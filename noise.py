@@ -34,4 +34,8 @@ class NoiseHandler:
         for s in self.terrain:
             print("".join(f"{str(i):10}" for i in s))
 
+    def convert_matplotlib(self) -> Tuple[List[int], List[int], List[List[float]]]:
+        d_arr = [ i for i in range(len(self.terrain)**2)]
+        return d_arr, d_arr, self.terrain
+
 
