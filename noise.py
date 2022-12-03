@@ -4,9 +4,12 @@ from perlin_noise import PerlinNoise
 class NoiseHandler:
 
     terrain = None
+    parameters = None
+    size = None
 
     def genTer(self, size: int, *octaves: Tuple[float, int]) -> None:
-        print("Generating Terrain")
+        self.parameters = octaves
+        self.size = size
 
         noises = [PerlinNoise(octaves=octave[1]) for octave in octaves]
 
@@ -21,6 +24,10 @@ class NoiseHandler:
             row.append(col)
 
         self.terrain = row
+
+    def genTerAgain(self):
+        self.genTer(self.size, *self.parameters)
+
 
     def getTer(self) -> List[List[float]]:
         if self.terrain:
